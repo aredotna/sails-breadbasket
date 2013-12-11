@@ -4,6 +4,7 @@
 ---------------------------------------------------------------*/
 
 var async = require('async');
+var request = require('request');
 
 var adapter = module.exports = {
 
@@ -41,7 +42,8 @@ var adapter = module.exports = {
     // drop   => Drop schema and data, then recreate it
     // alter  => Drop/add columns as necessary, but try 
     // safe   => Don't change anything (good for production DBs)
-    migrate: 'alter'
+    migrate: 'alter',
+    environment: 'development'
   },
 
   // This method runs when a model is initially registered at server start time
@@ -141,6 +143,11 @@ var adapter = module.exports = {
     // for an example, check out:
     // https://github.com/balderdashy/sails-dirty/blob/master/DirtyAdapter.js#L247
 
+  },
+
+
+  request: function(options){
+    
   }
 
 

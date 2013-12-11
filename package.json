@@ -1,26 +1,27 @@
 {
-  "name": "sails-adapter-boilerplate",
+  "name": "sails-breadbasket",
   "version": "0.0.1",
-  "description": "Boilerplate adapter for Sails.js",
-  "main": "BoilerplateAdapter.js",
+  "description": "Sails Adapter for Arena Breadbasket Server",
   "scripts": {
     "test": "echo \"Adapter should be tested using Sails.js core.\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/balderdashy/sails-adapter-boilerplate.git"
+    "url": "https://github.com/arenahq/sails-breadbasket"
   },
   "keywords": [
     "orm",
     "waterline",
     "sails",
     "sailsjs",
-    "sails.js"
+    "sails.js",
+    "arena"
   ],
-  "author": "Your name here",
+  "author": "Charles Broskoski",
   "license": "MIT",
   "readmeFilename": "README.md",
   "dependencies": {
-    "async": "0.1.22"
+    "async": "0.1.22",
+    "request": "2.29.0"
   }
 }
