@@ -5,6 +5,7 @@
 
 var async = require('async');
 var request = require('request');
+var _ = require('underscore.inflections');
 
 var adapter = module.exports = {
 
@@ -48,6 +49,12 @@ var adapter = module.exports = {
 
   // This method runs when a model is initially registered at server start time
   registerCollection: function(collection, cb) {
+    
+    if(this.defaults.environment == 'development'){
+      this.host_url = 'http://localhost:3000';
+    }else{
+      this.host_url = 'http://breadbasket.heroku.com';
+    }
 
     cb();
   },
@@ -94,9 +101,13 @@ var adapter = module.exports = {
   // REQUIRED method if users expect to call Model.create() or any methods
   create: function(collectionName, values, cb) {
     // Create a single new model specified by values
-
-    // Respond with error or newly created model instance
-    cb(null, values);
+    data = {json:{}};
+    data.json[_.singularize(collectionName)] = values;
+    request.post("http://localhost:3000/" + collectionName, data,
+      function(e, response, body){
+        cb(null, body);
+      }
+    );
   },
 
   // REQUIRED method if users expect to call Model.find(), Model.findAll() or related methods
@@ -147,7 +158,7 @@ var adapter = module.exports = {
 
 
   request: function(options){
-    
+
   }
 
 
